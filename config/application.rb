@@ -27,6 +27,18 @@ module Viralbitminer
       g.template_engine :haml
     end
 
-
+    config.twitter = if Rails.env.production?
+                        {
+                            key: ENV['VBM_TWT_KEY'],
+                            secret: ENV['VBM_TWT_SECRET'],
+                            access_token: ENV['VBM_TWT_ACCESS_TOKEN'],
+                            access_token_secret: ENV['VBM_TWT_ACCESS_TOKEN_SECRET'],
+                        }
+                      else
+                        YAML.load_file(Rails.root + "config/twitter.yml")[Rails.env].symbolize_keys
+                      end
+    def twitter
+      config.twitter
+    end
   end
 end

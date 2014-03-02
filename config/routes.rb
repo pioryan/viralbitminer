@@ -1,7 +1,17 @@
 Viralbitminer::Application.routes.draw do
+  ActiveAdmin.routes(self)
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+
+  get '/auth/:provider/callback', to: 'authentications#create'
+
+  devise_scope :user do
+    get "user/login", :to => "sessions#new"
+    post "user/sign_in", :to  => "sessions#create"
+    get "user/sign_in", :to  => "sessions#new"
+    get "user/sign_out", :to  => "sessions#destroy"
+  end
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'

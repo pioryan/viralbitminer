@@ -30,7 +30,13 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem "haml-rails"
 
 gem "devise", "~> 3.2.3"
-
+gem 'omniauth'
+gem "omniauth-twitter", "~> 1.0.1"
+gem 'oauth2'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'ransack',     github: 'ernie/ransack'
+gem 'cancan'
+gem 'rolify'
 group :development do
   gem 'mysql2'
 end
